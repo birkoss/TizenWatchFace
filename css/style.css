@@ -1,0 +1,160 @@
+@font-face {
+    font-family: TimeWatch;
+    src: url("../fonts/pixelmix.ttf") format("opentype");
+}
+
+body {
+    width: 100%;
+    height: 100%;
+}
+
+#map {
+    position: absolute;
+    width: 360px;
+    height: 360px;
+    top: 0px;
+    left: 0px;
+    overflow: hidden;
+    background-image: url(../images/background.png);
+}
+
+.health {
+	position: absolute;
+	width: 48px;
+	top: -20px;
+	
+	height: 5px;
+	background-color: #ffffff;
+	padding: 2px;
+}
+
+.health > .fill {
+	background-color: #ff0000;
+	width: 100%;
+	height: 100%;
+}
+
+/*
+hour&minutes
+*/
+
+#time {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 100px;
+}
+
+#time > span {
+	color: white;
+	font-family: TimeWatch;
+	font-size: 400%;
+}
+
+#debug {
+	color: white;
+	float: left;
+	position: absolute;
+	top: 20px;
+	left: 120px;
+	font-family: TimeWatch;
+}
+
+div.unit {
+	position: relative;
+}
+
+div.unit > div.sprite {
+	width: 48px;
+	height: 48px;
+	background-image: url(../images/enemies.png);
+	animation: idle 1s steps(2) infinite;
+}
+
+div.unit.lutin > .div.sprite {
+	background-position-y: 48px;
+}
+
+div.unit > div.blood {
+	display: none;
+	width: 48px;
+	height: 48px;
+	background-image: url(../images/blood.png);
+	position: absolute;
+	top: 14px;
+	left: 5px;
+}
+div.unit.dead > div.sprite {
+	display: none;
+}
+div.unit.dead > div.blood {
+	display: block;	
+}
+
+div.unit {
+	position: absolute;
+	top: 216px;
+}
+
+div#player {
+	left: calc(50% - 48px - 24px);
+}
+
+div#player.unit > div.sprite {
+	transform: scaleX(-1);
+	background-image: url(../images/player.png);
+}
+
+div#enemy {
+	left: calc(50% + 24px);
+}
+
+div.unit.animate > .sprite {
+	position: relative;
+	animation: moves 0.1s forwards ease-out;	
+}
+
+div.unit.animate.back > .sprite {
+	animation: moves-back 0.1s forwards ease-out;	
+}
+
+div#road {
+	background-image: url(../images/road.png);
+	width: 100%;
+	height: 48px;
+	position: absolute;
+	top: calc(60%);
+}
+
+#effect {
+	width: 64px;
+	height: 64px;
+	background-image: url(../images/effects.png);
+	
+	position: absolute;
+	top: calc(60%);
+	left: calc(50% + 12px);
+	display: none;
+}
+
+#effect.animate {
+	animation: effect 0.5s steps(2) 2;
+}
+
+@keyframes idle {
+   100% { background-position-x: -96px }
+}
+
+@keyframes effect {
+   100% { background-position: -128px }
+}
+
+@keyframes moves {
+	from { left: 0; }
+	to { left: 72px; }
+}
+
+@keyframes moves-back {
+	from { left: 72px; }
+	to { left: 0; }
+}
